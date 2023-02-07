@@ -11,19 +11,27 @@
 
     <div class="container">
     <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-        <form action="login.php" method="get" class="login-email" >
+        <form action="<?php echo base_url('application/controllers/welcome/login'); ?>" method="post" class="login-email" >
             
             <div class="input-group">
-            <input type="mail" placeholder="Email"  name="mail" required>
+                <input type="mail" placeholder="Email"  name="mail" required>
             </div>
             <div class="input-group">
-            <input type="password" placeholder="Password"  name="mdp" required>
+                <input type="password" placeholder="Password"  name="mdp" required>
             </div>
-            <p class="login-register-text">J'ai pas encore de compte? <a href="inscription.php">S'inscrire ici</a>.</p>
             <div class="input-group">
             <p><input type="submit" value="Valider"></p>
             </div>
         </form>
+        
+        <p class="login-register-text">
+                J'ai pas encore de compte? 
+            </p>
+        <form action="<?php echo base_url('application/controllers/welcome/inscription'); ?>" method="get">
+            <div class="input-group">
+            <input type="submit" value="inscrire">
+            </div>
+            </form>
         <?php
             if(isset($_GET['erreur']))
             {
