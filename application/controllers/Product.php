@@ -7,7 +7,7 @@ class Product extends CI_Controller
     {
         parent::__construct();
        
-        if(!$this->session->has_userdata('mail'))
+        if(!$this->session->has_userdata('utilisateur'))
 		{
 			redirect('welcome/index');  
 		}

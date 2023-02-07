@@ -3,33 +3,33 @@
 
     class Model extends CI_Model 
     {
-        public function find()
-        {
-            return array('nom'=>'Hariaja','Prenom'=>'Andrianandrasana');
-        }
-
-        public function listeProduit()
-        {   
-            $_SESSION['hariaja'] = "bonjour";
-            $sql = "select * from marque";
-            $query = $this->db->query($sql);
-            $result = array();
-
-            foreach($query->result_array() as $row)
-            {
-                $result[] = $row;
-            }
-            return $result;
-        }
-
-        public function checkLogin($mail,$pass)
+        public function checkLogin($email,$mdp)
         {
             $valiny = false;
-            if($mail == 'rshariaja@gmail.com' && $pass == '123')
+            $sql = "SELECT * FROM utilisateur where email = '$email' and mdp = '$mdp'";
+            $query = $this->db->query($sql);
+            if($query[0]['email'] != null)
             {
                 $valiny = true;
+                $_SESSION['utilisateur'] = $query[0];
             }
             return $valiny;
+        }
+        public function inscription($email,$mdp,$nom)
+        {
+            $valiny = false;
+            $sqlVerif = "select email from utilisateur where email ='$email'";
+            $queryVerif = $this->db->query($sqlVerif);
+            if($queryVerif[0]['email'] != null)
+            {
+                $sql = "INSERT into utilisateur values (null,'$email','$mdp','$nom',0)";
+                try {
+                    $query = $this->db->query($sql);
+                    $valiny = true;
+                } catch (\Throwable $th) {
+                    $valiny = false;
+                }
+            }
         }
     }
 ?>

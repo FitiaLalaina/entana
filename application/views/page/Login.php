@@ -11,9 +11,9 @@
 
     <div class="container">
     <p class="login-text" style="font-size: 2rem; font-weight: 800;">Login</p>
-        <form action="<?php echo base_url('application/controllers/welcome/login'); ?>" method="post" class="login-email" >
-            
-            <div class="input-group">
+        <form action="<?php echo base_url('welcome/login'); ?>" method="post" class="login-email" >
+        <?php phpinfo();?>
+        <div class="input-group">
                 <input type="mail" placeholder="Email"  name="mail" required>
             </div>
             <div class="input-group">
@@ -26,8 +26,8 @@
         
         <p class="login-register-text">
                 J'ai pas encore de compte? 
-            </p>
-        <form action="<?php echo base_url('application/controllers/welcome/inscription'); ?>" method="get">
+        </p>
+        <form action="<?php echo base_url('welcome/inscription'); ?>" method="get" class="login-email" >
             <div class="input-group">
             <input type="submit" value="inscrire">
             </div>

@@ -24,7 +24,10 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->view('page/login');
 	}
-
+	public function inscription()
+	{
+		$this->load->view('page/inscription');
+	}
 	public function login()
 	{
 		$mail = $this->input->post("mail");
@@ -42,7 +45,7 @@ class Welcome extends CI_Controller {
 
 	public function deconexion()
 	{
-		$this->session->sess_destroy();
+		// $this->session->sess_destroy();
 		redirect('welcome/index');
 	}
 }
