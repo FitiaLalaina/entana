@@ -16,10 +16,10 @@ create or replace view adminn as(select * from utilisateur where identification 
 
 create table objet
 (
-    idObject int auto_increment primary key,
+    idObjet int auto_increment primary key,
     nom varchar(100) not null,
     idUtilisateur int,
-    foreign key(idUtilisateur) references(utilisateur) idUtilisateur = idUtilisateur,
+    foreign key(idUtilisateur) references utilisateur(idUtilisateur)
 );
 
 create table img
@@ -32,10 +32,17 @@ create table detaileObjet
 (
     idDetaileObjet int auto_increment primary key,
     idObjet int,
-    foreign key(idObjet) references(Objet) idObjet = idObjet,
+    foreign key(idObjet) references objet(idObjet),
     prixEstimation double precision not null,
-    idImg varchar(20) not null,
-    Constraint fk_Img foreign key(idImg) references(Img) idImg = idImg,
-    descri text not null;
+    idImg int,
+    foreign key(idImg) references img(idImg),
+    descri text not null
 );
 
+create table demande
+(
+    idObjetProposer int,
+    foreign key(idObjetProposer) references Objet(idObjet),
+    idObjetDemander int,
+    foreign key(idObjetDemander) references Objet(idObjet)
+);
